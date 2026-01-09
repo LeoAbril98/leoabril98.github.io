@@ -558,23 +558,41 @@ strong {
         gap: 40px;
     }
 
-    /* 4. Corrige os Grids de Projetos e Experiência */
+    /* 4. Corrige os Grids e Cabeçalhos de Projetos */
+    /* Adicionada a classe .project-header para evitar o erro da imagem d7b3de */
+    .project-header,
     .project-body-grid,
     .education-layout {
         display: flex !important;
-        flex-direction: column !important;
-        align-items: center;
-        text-align: center;
+        flex-direction: column !important; /* Força um item abaixo do outro */
+        align-items: center !important;
+        text-align: center !important;
+        width: 100% !important;
+    }
+
+    .header-left,
+    .header-right {
+        width: 100% !important;
+        flex: none !important;
     }
 
     /* 5. Ajusta textos gigantes para não vazar da tela */
     .giant-title {
         font-size: 2.5rem !important;
         line-height: 1.2;
+        margin-bottom: 15px;
     }
 
     .year-outline {
-        font-size: 3rem !important;
+        font-size: 3rem !important; /* Reduzido para caber na largura do celular */
+        margin: 10px 0 20px 0 !important;
+        display: block !important;
+        width: 100%;
+        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    }
+
+    .blue-line-short {
+        margin: 0 auto 30px auto !important; /* Centraliza a linha azul */
     }
 
     .bg-name-outline {
@@ -582,10 +600,17 @@ strong {
         bottom: 0;
     }
 
-    /* 6. Ajusta a foto de perfil */
-    .hero-image img {
+    /* 6. Ajusta a foto de perfil e imagens de projeto */
+    .hero-image img,
+    .main-mockup img,
+    .img-fluid {
         max-width: 100% !important;
         height: auto !important;
+        border-radius: 15px !important;
+    }
+
+    .main-mockup {
+        padding: 15px !important; /* Reduz o respiro interno no mobile */
     }
 }
 
