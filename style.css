@@ -618,11 +618,6 @@ strong {
         width: 100% !important;
     }
 
-    /* CORREÇÃO PARA O PROJETO INVERTIDO (Disney+) */
-    .project-body-grid.reverse {
-        flex-direction: column-reverse !important; /* Força imagem para o topo */
-    }
-
     .project-visual {
         width: 100% !important;
         order: -1 !important; /* Reforço para a imagem vir primeiro */
