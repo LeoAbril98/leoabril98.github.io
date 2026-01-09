@@ -1,3 +1,4 @@
+/* 1. VARIÁVEIS E RESET */
 :root {
     --bg-dark: #0a0a0a;
     --accent-blue: #32a6ff;
@@ -46,7 +47,7 @@ body {
     position: relative;
 }
 
-/* NAVEGAÇÃO */
+/* 2. NAVEGAÇÃO */
 header {
     padding: 30px 0;
     z-index: 20;
@@ -78,7 +79,6 @@ nav ul li a {
     font-weight: 700;
     transition: 0.3s;
 }
-
 .active-link {
     color: var(--accent-blue) !important;
 }
@@ -88,32 +88,30 @@ nav ul li a:hover {
 
 .nav-line {
     height: 2px;
-    background: #fff;
+    background: rgba(255, 255, 255, 0.3);
     width: 120px;
     position: relative;
 }
-
 .nav-line::after {
     content: "";
     position: absolute;
     right: 0;
-    top: -4px;
+    top: 50%;
+    transform: translateY(-50%);
     width: 10px;
     height: 10px;
     background: #fff;
     border-radius: 50%;
 }
 
-/* SISTEMA DE ABAS */
+/* 3. SISTEMA DE ABAS */
 .tab-content {
     display: none;
     animation: fadeIn 0.6s ease forwards;
 }
-
 .tab-content.active {
     display: block;
 }
-
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -125,7 +123,7 @@ nav ul li a:hover {
     }
 }
 
-/* CONTEÚDO HERO (SOBRE) */
+/* 4. SEÇÃO HERO (SOBRE) */
 .hero {
     flex: 1;
     display: flex;
@@ -134,7 +132,6 @@ nav ul li a:hover {
     gap: 20px;
     padding-bottom: 60px;
 }
-
 .hero-text {
     max-width: 550px;
     z-index: 5;
@@ -150,7 +147,6 @@ h1 {
     line-height: 1.1;
     margin-bottom: 20px;
 }
-
 .badge {
     display: inline-block;
     background-color: var(--accent-blue);
@@ -159,10 +155,8 @@ h1 {
     font-weight: 800;
     font-size: 0.7rem;
     margin-bottom: 25px;
-    letter-spacing: 0.5px;
     text-transform: uppercase;
 }
-
 .sub-headline {
     color: var(--text-white);
     margin-bottom: 15px;
@@ -174,17 +168,53 @@ h1 {
     line-height: 1.6;
     font-size: 0.9rem;
 }
-
-.hero-image img {
-    max-width: 500px;
-    height: 75vh;
-    object-fit: cover;
-    object-position: top;
-    -webkit-mask-image: linear-gradient(to right, transparent, black 20%);
-    mask-image: linear-gradient(to right, transparent, black 20%);
+.hero-image {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 5;
 }
 
-/* --- Layout da Seção Formação --- */
+.hero-image img {
+    max-width: 450px;
+    height: auto;
+    max-height: 70vh;
+    object-fit: cover;
+    border-radius: 30px; /* Bordas arredondadas modernas */
+
+    /* Efeito de Vidro e Brilho */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+
+    /* REMOVIDO: mask-image que causava transparência lateral */
+    -webkit-mask-image: none;
+    mask-image: none;
+
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+/* Efeito de Interação */
+.hero-image img:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 35px 60px -15px rgba(50, 166, 255, 0.3);
+    border-color: var(--accent-blue);
+}
+
+/* Círculo de Brilho atrás da foto (Opcional para dar profundidade) */
+.hero-image::before {
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: var(--accent-blue);
+    filter: blur(120px);
+    opacity: 0.15;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+/* 5. LAYOUT GERAL DE SEÇÕES */
 .education-layout {
     display: flex;
     justify-content: space-between;
@@ -192,101 +222,307 @@ h1 {
     padding: 40px 0;
     gap: 50px;
 }
-
 .edu-left {
     flex: 1;
     max-width: 450px;
 }
-
 .giant-title {
     font-size: 4.5rem;
     font-weight: 900;
     letter-spacing: -2px;
     margin-bottom: 10px;
+    text-transform: uppercase;
 }
-
 .blue-line-short {
     width: 150px;
     height: 6px;
     background-color: var(--accent-blue);
     margin-bottom: 30px;
 }
-
 .edu-intro {
     color: var(--text-gray);
     line-height: 1.6;
     font-size: 1rem;
 }
-
 .edu-right {
     flex: 1.2;
     position: relative;
 }
 
-/* Efeito do Ano Contornado (Outline) */
+/* 6. ESTILO DE LISTA TÉCNICA (FORMAÇÃO / EXPERIÊNCIA) */
+.edu-action-list {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    margin-top: 20px;
+}
+.edu-action-row {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: 0.3s ease;
+}
+.edu-action-row:hover {
+    padding-left: 10px;
+    border-bottom-color: var(--accent-blue);
+}
+
+.edu-info {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+.edu-label {
+    font-size: 0.7rem;
+    font-weight: 800;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+}
+.edu-value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--text-white);
+}
+.edu-institution {
+    font-size: 0.9rem;
+    color: var(--text-gray);
+    margin-top: 5px;
+    line-height: 1.6;
+}
+
+/* TEXTO DE FUNDO (YEAR / CATEGORY) */
 .year-outline {
     font-size: 6rem;
     font-weight: 900;
-    font-family: "Poppins", sans-serif;
     color: transparent;
-    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
-    margin-bottom: 20px;
-    letter-spacing: 0.1em;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+    line-height: 0.8;
+    margin-bottom: 30px;
+    text-transform: uppercase;
 }
 
-.edu-list {
+/* 7. SKILL TAGS (PÍLULAS) */
+.skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 15px;
+}
+.tag {
+    background: rgba(50, 166, 255, 0.1);
+    color: var(--accent-blue);
+    padding: 5px 12px;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    border: 1px solid rgba(50, 166, 255, 0.3);
+    transition: 0.3s;
+}
+.edu-action-row:hover .tag {
+    background: var(--accent-blue);
+    color: #000;
+    border-color: var(--accent-blue);
+}
+
+/* 8. SEÇÃO DE PROJETOS */
+/* --- ESTILO PROJETOS REORGANIZADO --- */
+.project-showcase {
+    padding: 40px 0;
     display: flex;
     flex-direction: column;
-    gap: 35px;
+    gap: 40px;
+    padding-bottom: 100px;
 }
 
-.edu-item h3 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    margin-bottom: 5px;
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.project-main-desc {
+    max-width: 500px;
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* Grid de Conteúdo */
+.project-body-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+
+/* Área da Imagem */
+.project-visual {
+    position: relative;
+}
+
+.main-mockup {
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 24px;
+    padding: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    transition: 0.5s ease;
+}
+
+.main-mockup:hover {
+    border-color: var(--accent-blue);
+    transform: scale(1.02);
+}
+
+.img-fluid {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+}
+
+/* Área de Texto */
+.project-category {
+    color: var(--accent-blue);
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.project-title-area h2 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin: 5px 0 20px 0;
+}
+
+.project-text {
+    font-size: 1rem;
+    color: var(--text-gray);
+    line-height: 1.8;
+    margin-bottom: 30px;
+}
+
+.project-actions {
+    margin-top: 40px;
+}
+
+/* Responsividade */
+@media (max-width: 1000px) {
+    .project-body-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+
+.github-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background-color: var(--accent-blue);
+    color: #000;
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+.github-btn:hover {
+    filter: brightness(1.2);
+    transform: scale(1.05);
+}
+
+/* 9. SEÇÃO DE CONTATO REORGANIZADA */
+.contact-wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 60px 0 120px 0;
+    position: relative;
+}
+.contact-list {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 700px;
+    z-index: 5;
+}
+
+.contact-action-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s ease;
+}
+.contact-action-row:hover {
+    background: rgba(50, 166, 255, 0.05);
+    border-color: var(--accent-blue);
+    transform: translateX(10px);
+}
+
+.contact-label {
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+}
+.contact-value {
+    font-size: 1.1rem;
     color: var(--text-white);
 }
-
-.edu-item p {
-    color: var(--text-gray);
-    font-size: 1rem;
+.contact-arrow {
+    font-size: 1.5rem;
+    font-weight: 900;
+    color: var(--accent-blue);
+    opacity: 0;
+    transition: 0.3s;
+}
+.contact-action-row:hover .contact-arrow {
+    opacity: 1;
 }
 
-/* Ajuste para telas menores */
-@media (max-width: 900px) {
-    .education-layout {
-        flex-direction: column;
-        padding: 40px 0;
-    }
-    .giant-title {
-        font-size: 3rem;
-    }
-    .year-outline {
-        font-size: 3.5rem;
-    }
+/* 10. RODAPÉ E FUNDO */
+.bg-name-outline {
+    position: absolute;
+    bottom: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 7vw;
+    font-weight: 900;
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.1);
+    white-space: nowrap;
+    z-index: 1;
+    pointer-events: none;
+    text-transform: uppercase;
 }
 
-/* RODAPÉ */
 footer {
     position: absolute;
-    bottom: 30px;
+    bottom: -10px;
     left: 0;
     width: 100%;
     padding: 0 40px;
     z-index: 15;
     pointer-events: none;
 }
-
 .footer-line {
     height: 1px;
     background: rgba(255, 255, 255, 0.3);
     width: 100%;
-    margin-bottom: 10px;
+    position: relative;
 }
 .footer-line::before {
     content: "";
     position: absolute;
-    left: 0; /* Posiciona no início da linha à esquerda */
+    left: 0;
     top: 50%;
     transform: translateY(-50%);
     width: 10px;
@@ -299,190 +535,97 @@ footer {
     font-weight: 700;
     font-size: 0.85rem;
     letter-spacing: 2px;
+    margin-top: 10px;
+}
+strong {
+    color: var(--text-white);
+    font-weight: 700;
 }
 
-/* RESPONSIVIDADE */
-@media (max-width: 900px) {
-    .hero {
-        flex-direction: column;
-        text-align: center;
-        padding-top: 40px;
+/* 11. RESPONSIVIDADE */
+/* --- CONFIGURAÇÃO MOBILE (PÁGINA ÚNICA) --- */
+@media (max-width: 768px) {
+    /* Exibe todas as seções uma abaixo da outra */
+    .tab-content {
+        display: block !important;
+        opacity: 1 !important;
+        transform: none !important;
+        padding: 40px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Divisória entre seções */
     }
-    .hero-image img {
-        height: 40vh;
-        max-width: 100%;
-    }
+
+    /* Esconde a navegação superior se não for usar scroll suave */
     nav ul,
     .nav-line {
         display: none;
     }
-    .section-title {
-        font-size: 2rem;
+
+    /* Ajusta o container para não ter scroll lateral */
+    .container {
+        padding: 0 20px;
+        height: auto;
+    }
+
+    /* Ajusta as imagens para ocuparem a largura total */
+    .hero-image img,
+    .main-mockup img,
+    .project-screenshot-small img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Empilha os grids de projetos e formação */
+    .project-body-grid,
+    .education-layout {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    /* Ajusta os títulos gigantes para não quebrarem a tela */
+    .giant-title {
+        font-size: 2.8rem;
+    }
+
+    .year-outline {
+        font-size: 3.5rem;
+    }
+
+    /* Garante que o Hero ocupe o topo */
+    .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 20px;
     }
 }
 
-/* Container de Experiência */
-.exp-container {
+/* Container para centralizar o botão */
+.more-projects-container {
     display: flex;
-    flex-direction: column;
-    gap: 45px;
-    margin-top: 20px;
+    justify-content: center;
+    margin-top: 2px; /* Espaço entre o último projeto e o botão */
+    padding-bottom: 4px;
+    width: 100%;
 }
 
-.exp-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 30px;
-}
-
-/* Coluna do Título e Ícone */
-.exp-header {
-    display: flex;
-    gap: 15px;
-    flex: 1;
-    min-width: 280px;
-}
-
-.exp-icon {
+/* Estilo do botão "Ver mais" */
+.view-more-btn {
+    display: inline-block;
+    padding: 15px 40px;
+    background-color: transparent;
     color: var(--accent-blue);
-    font-size: 1.8rem;
-    font-weight: 900;
-    line-height: 1;
-    letter-spacing: -2px;
-}
-
-.exp-title-box h3 {
-    font-size: 1.4rem;
-    color: var(--text-white);
-    margin-bottom: 4px;
-}
-
-.exp-title-box p {
-    color: var(--text-gray);
-    font-size: 0.85rem;
-    font-weight: 700;
+    border: 2px solid var(--accent-blue);
+    text-decoration: none;
+    font-weight: 800;
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    transition: all 0.3s ease;
     text-transform: uppercase;
 }
 
-/* Coluna da Descrição (Lado direito) */
-.exp-body {
-    flex: 1.8;
-    color: var(--text-gray);
-    font-size: 0.95rem;
-    line-height: 1.6;
-    padding-top: 5px;
-}
-
-/* Destaque para palavras-chave (opcional) */
-.exp-body strong {
-    color: var(--text-white);
-    font-weight: 600;
-}
-
-/* Responsividade para telas menores */
-@media (max-width: 1000px) {
-    .exp-item {
-        flex-direction: column;
-        gap: 10px;
-    }
-    .exp-header {
-        min-width: 100%;
-    }
-    .exp-body {
-        padding-left: 45px;
-    }
-}
-
-/* --- Estilos da Seção Contato --- */
-.contact-section {
-    padding: 60px 0 180px 0; /* Espaço extra para o nome no fundo */
-    text-align: center;
-    position: relative;
-}
-
-.giant-title-center {
-    font-size: 3.5rem;
-    font-weight: 900;
-    margin-bottom: 5px;
-}
-
-.contact-subtitle {
-    color: var(--accent-blue);
-    font-style: italic;
-    font-size: 1.2rem;
-    margin-bottom: 60px;
-}
-
-.contact-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 40px;
-    z-index: 5;
-    position: relative;
-}
-
-.contact-item {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-}
-
-.contact-icon-circle {
-    width: 60px;
-    height: 60px;
-    border: 2px solid var(--accent-blue);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.5rem;
-    color: var(--accent-blue);
-    transition: 0.3s;
-}
-
-.contact-item:hover .contact-icon-circle {
+.view-more-btn:hover {
     background-color: var(--accent-blue);
     color: #000;
-    transform: scale(1.1);
-}
-
-.contact-item h3 {
-    font-size: 1.1rem;
-    color: var(--text-white);
-}
-
-.contact-item p {
-    color: var(--text-gray);
-    font-size: 0.9rem;
-    line-height: 1.4;
-}
-
-/* Nome Contornado no Fundo (Estilo da Imagem) */
-.bg-name-outline {
-    position: absolute;
-    bottom: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-
-    font-family: "Poppins", sans-serif;
-    font-size: 7vw;
-    font-weight: 900;
-    letter-spacing: 0.1em;
-
-    /* CONTORNO */
-    color: transparent;
-    -webkit-text-stroke: 2px rgba(255, 255, 255, 0.22);
-
-    white-space: nowrap;
-    z-index: 1;
-    pointer-events: none;
-    user-select: none;
-    text-transform: uppercase;
-}
-
-/* Ajuste do footer para não sobrepor o nome */
-footer {
-    background: transparent;
-    padding-top: 20px;
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(50, 166, 255, 0.2);
 }
