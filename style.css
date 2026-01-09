@@ -535,7 +535,7 @@ strong {
 /* --- CONFIGURAÇÃO MOBILE (PÁGINA ÚNICA) --- */
 /* --- AJUSTES PARA GITHUB PAGES E MOBILE --- */
 @media (max-width: 768px) {
-    /* 1. Força todas as seções a aparecerem (Página Única) */
+    /* 1. Transformação em Página Única */
     .tab-content {
         display: block !important;
         opacity: 1 !important;
@@ -545,72 +545,130 @@ strong {
         border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* 2. Remove o sistema de navegação por abas no mobile */
+    /* 2. Remoção da Navegação por Abas */
     header nav ul,
     .nav-line {
         display: none !important;
     }
 
-    /* 3. Ajusta o Hero (Sobre Mim) para empilhar */
+    /* 3. Ajuste do Hero (Sobre Mim) */
     .hero {
         flex-direction: column-reverse !important;
         text-align: center;
         gap: 40px;
+        padding-top: 20px;
     }
 
-    /* 4. Corrige os Grids e Cabeçalhos de Projetos */
-    /* Adicionada a classe .project-header para evitar o erro da imagem d7b3de */
-    .project-header,
-    .project-body-grid,
+    .hero-text {
+        max-width: 100% !important;
+    }
+
+    .hero-image img {
+        height: 45vh !important;
+        max-width: 100% !important;
+        mask-image: linear-gradient(to bottom, transparent, black 20%);
+        -webkit-mask-image: linear-gradient(to bottom, transparent, black 20%);
+    }
+
+    /* 4. Ajuste de Layouts Gerais (Educação e Experiência) */
     .education-layout {
-        display: flex !important;
-        flex-direction: column !important; /* Força um item abaixo do outro */
+        flex-direction: column !important;
         align-items: center !important;
         text-align: center !important;
-        width: 100% !important;
+        gap: 30px !important;
     }
 
-    .header-left,
-    .header-right {
+    .edu-left,
+    .edu-right {
         width: 100% !important;
-        flex: none !important;
+        max-width: 100% !important;
     }
 
-    /* 5. Ajusta textos gigantes para não vazar da tela */
+    /* 5. Estilização de Textos e Títulos */
     .giant-title {
-        font-size: 2.5rem !important;
-        line-height: 1.2;
+        font-size: 2.8rem !important;
+        line-height: 1.1;
         margin-bottom: 15px;
     }
 
     .year-outline {
-        font-size: 3rem !important; /* Reduzido para caber na largura do celular */
+        font-size: 3.5rem !important;
         margin: 10px 0 20px 0 !important;
         display: block !important;
         width: 100%;
-        -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+        text-align: center;
     }
 
     .blue-line-short {
         margin: 0 auto 30px auto !important; /* Centraliza a linha azul */
     }
 
-    .bg-name-outline {
-        font-size: 10vw !important;
-        bottom: 0;
+    /* 6. PROJETOS (Estudo de Caso Mobile) */
+    .project-header {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+        gap: 15px !important;
     }
 
-    /* 6. Ajusta a foto de perfil e imagens de projeto */
-    .hero-image img,
-    .main-mockup img,
-    .img-fluid {
-        max-width: 100% !important;
-        height: auto !important;
-        border-radius: 15px !important;
+    .project-body-grid {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px !important;
+        width: 100% !important;
+    }
+
+    /* CORREÇÃO PARA O PROJETO INVERTIDO (Disney+) */
+    .project-body-grid.reverse {
+        flex-direction: column-reverse !important; /* Força imagem para o topo */
+    }
+
+    .project-visual {
+        width: 100% !important;
+        order: -1 !important; /* Reforço para a imagem vir primeiro */
+    }
+
+    .project-title-area h2 {
+        font-size: 2.2rem !important;
     }
 
     .main-mockup {
-        padding: 15px !important; /* Reduz o respiro interno no mobile */
+        padding: 15px !important; /* Menos respiro interno no mobile */
+        border-radius: 15px !important;
+    }
+
+    /* 7. CONTATOS */
+    .contact-list {
+        max-width: 100% !important;
+    }
+
+    .contact-action-row {
+        padding: 15px !important;
+        flex-direction: column !important;
+        gap: 10px;
+        text-align: center;
+    }
+
+    .contact-arrow {
+        display: none !important; /* Remove as setas no mobile para economizar espaço */
+    }
+
+    /* 8. ELEMENTOS DE FUNDO E FOOTER */
+    .bg-name-outline {
+        font-size: 12vw !important;
+        bottom: 0 !important;
+        opacity: 0.03 !important;
+    }
+
+    footer {
+        position: relative !important;
+        bottom: auto !important;
+        padding: 40px 20px !important;
+        width: 100% !important;
+    }
+
+    .footer-info {
+        text-align: center !important;
     }
 }
 
