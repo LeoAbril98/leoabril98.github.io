@@ -407,17 +407,6 @@ h1 {
 }
 
 /* Responsividade */
-@media (max-width: 1000px) {
-    .project-body-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .project-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
-    }
-}
 
 .github-btn {
     display: inline-block;
@@ -544,58 +533,59 @@ strong {
 
 /* 11. RESPONSIVIDADE */
 /* --- CONFIGURAÇÃO MOBILE (PÁGINA ÚNICA) --- */
+/* --- AJUSTES PARA GITHUB PAGES E MOBILE --- */
 @media (max-width: 768px) {
-    /* Exibe todas as seções uma abaixo da outra */
+    /* 1. Força todas as seções a aparecerem (Página Única) */
     .tab-content {
         display: block !important;
         opacity: 1 !important;
         transform: none !important;
-        padding: 40px 0;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05); /* Divisória entre seções */
+        visibility: visible !important;
+        padding: 60px 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     }
 
-    /* Esconde a navegação superior se não for usar scroll suave */
-    nav ul,
+    /* 2. Remove o sistema de navegação por abas no mobile */
+    header nav ul,
     .nav-line {
-        display: none;
+        display: none !important;
     }
 
-    /* Ajusta o container para não ter scroll lateral */
-    .container {
-        padding: 0 20px;
-        height: auto;
+    /* 3. Ajusta o Hero (Sobre Mim) para empilhar */
+    .hero {
+        flex-direction: column-reverse !important;
+        text-align: center;
+        gap: 40px;
     }
 
-    /* Ajusta as imagens para ocuparem a largura total */
-    .hero-image img,
-    .main-mockup img,
-    .project-screenshot-small img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    /* Empilha os grids de projetos e formação */
+    /* 4. Corrige os Grids de Projetos e Experiência */
     .project-body-grid,
     .education-layout {
-        display: flex;
-        flex-direction: column;
-        gap: 30px;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center;
+        text-align: center;
     }
 
-    /* Ajusta os títulos gigantes para não quebrarem a tela */
+    /* 5. Ajusta textos gigantes para não vazar da tela */
     .giant-title {
-        font-size: 2.8rem;
+        font-size: 2.5rem !important;
+        line-height: 1.2;
     }
 
     .year-outline {
-        font-size: 3.5rem;
+        font-size: 3rem !important;
     }
 
-    /* Garante que o Hero ocupe o topo */
-    .hero {
-        flex-direction: column-reverse;
-        text-align: center;
-        padding-top: 20px;
+    .bg-name-outline {
+        font-size: 12vw !important;
+        bottom: 0;
+    }
+
+    /* 6. Ajusta a foto de perfil */
+    .hero-image img {
+        max-width: 100% !important;
+        height: auto !important;
     }
 }
 
